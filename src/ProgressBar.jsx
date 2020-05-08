@@ -23,11 +23,12 @@ function ProgressBar ({value, skillName, onProgressClick,onInputChange}){
             <progress max="2" onClick = {onProgressClick} value = {value[0]}>
             </progress>
             <span>{emojiList[value[0]]}</span>
-            {value[0]!==2 && (<>
-                <input type="checkbox" id={idSkill} checked={value[1]===1} value="1" onChange = {onInputChange}/>
-                <label for={idSkill}>
-                    Хочу изучить
-                </label>
+            {value[0]!==2 && (
+                <>
+                    <input type="checkbox" id={idSkill} checked={value[1]===1} value="1" onChange = {onInputChange}/>
+                    <label htmlFor={idSkill}>
+                        Хочу изучить
+                    </label>
                 </>
             )}
             
