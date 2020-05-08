@@ -1,0 +1,99 @@
+*{ 
+  margin:0; 
+  padding:0; 
+  } 
+  body{ 
+  font-family:arial,sans-serif; 
+  font-size:100%; 
+  /* margin:3em;  */
+  background-image: url('./img/cork-board-background.jpg'); 
+  color:#fff; 
+  } 
+  h2,p{ 
+  font-size:100%; 
+  font-weight:normal; 
+  } 
+  ul.skillGroup,.skillGroup li{ 
+  list-style:none; 
+  } 
+  ul.skillGroup{ 
+  overflow:hidden; 
+  padding:3em; 
+  display:flex; 
+  flex-direction: row;
+  flex-wrap: wrap;
+  } 
+  ul.skillGroup>li { 
+  text-decoration:none; 
+  color:#000; 
+  background:#ffc; 
+  display:block; 
+  /* height:25em;  */
+  width:28%; 
+  padding:1em; 
+  margin:1em; 
+  } 
+  
+
+  ul li h2{ 
+    font-size:140%; 
+    font-weight:bold; 
+    padding-bottom:10px; 
+   } 
+   ul li{ 
+    font-family:"Marck Script",arial,sans-serif; 
+    font-size:100%; 
+   } 
+   ul.skillElement{
+     display: flex;
+     flex-direction: column;
+   }
+   ul.skillElement li>span{
+    overflow-wrap: break-word;  /* не поддерживает IE, Firefox; является копией word-wrap */ 
+    word-wrap: normal;
+    word-break: normal;  /* не поддерживает Opera12.14, значение keep-all не поддерживается IE, Chrome */ 
+    line-break: auto;  /* нет поддержки для русского языка */ 
+    hyphens: manual;  /* значение auto не поддерживается Chrome */ 
+    width: 50%;
+    float: left;
+  
+   }
+   ul.skillElement>li{ 
+    margin:0.3em; 
+  }
+  ul.skillGroup>li { 
+      text-decoration:none; 
+      color:#000; 
+      background:#ffc; 
+      display:block; 
+     
+      padding:1em; 
+      -moz-box-shadow:5px 5px 7px rgba(33,33,33,1); 
+      -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7); 
+      box-shadow: 5px 5px 7px rgba(33,33,33,.7); 
+      -moz-transition:-moz-transform .15s linear; 
+      -o-transition:-o-transform .15s linear; 
+      -webkit-transition:-webkit-transform .15s linear; 
+      
+      } 
+    ul.skillGroup >i:nth-child(even) { 
+        -o-transform:rotate(4deg); 
+        -webkit-transform:rotate(4deg); 
+        -moz-transform:rotate(4deg); 
+        position:relative; 
+        top:5px; 
+        } 
+        ul.skillGroup>li:nth-child(3n) { 
+        -o-transform:rotate(-3deg); 
+        -webkit-transform:rotate(-3deg); 
+        -moz-transform:rotate(-3deg); 
+        position:relative; 
+        top:-5px; 
+        } 
+        ul.skillGroup>li:nth-child(5n) { 
+        -o-transform:rotate(5deg); 
+        -webkit-transform:rotate(5deg); 
+        -moz-transform:rotate(5deg); 
+        position:relative; 
+        top:-10px; 
+     } 
