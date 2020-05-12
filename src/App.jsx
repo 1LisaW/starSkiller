@@ -8,21 +8,31 @@ import competence from './competence.json';
 import roles from './roles.json';
 
 function App() {
-  // let url = new URL(window.location.href);
-  // let params = new URLSearchParams(url.search.slice(1));
-  // params.set('size', 'L') 
-  // console.log(params);
-  
+
+  const url = new URL(window.location);
+  const params = url.search.substring(1).split("&"),
+    keyPairs = {};
+    for (var i = params.length - 1; i >= 0; i--) {
+      keyPairs[params[i].split('=')[0]]=decodeURIComponent([params[i].split('=')[1]].join("")).trim();
+      
+  };
+  const incomingFilters = keyPairs["tags"].split(",");
+
   // declaration - role state repository {rolesMap}
   const rolesMap =JSON.parse(JSON.stringify(roles));
- 
+  
 
   // writing default value  {rolesMap}
-  Object.keys(rolesMap).map((item) => {
-      rolesMap[item]["role"]="true";
+  const crossFilters = Object.keys(rolesMap).filter(item=>incomingFilters.includes(rolesMap[item]["tagName"])).map(item=>rolesMap[item]["tagName"]);
+ 
+  Object.keys(rolesMap).forEach((item) =>{
+    rolesMap[item]["role"]= !crossFilters.length || crossFilters.includes(rolesMap[item]["tagName"]);
   });
+
+ 
   
   const [currentRolesMap,setRolesMap]= useState(rolesMap);
+
    // declaration - array of selected tags [currentRoles]
   const currentRoles = Object.keys(currentRolesMap).filter((item)=>currentRolesMap[item]["role"]).map(item=>currentRolesMap[item]["tagName"]);
   // callback for changing filters
@@ -30,11 +40,10 @@ function App() {
     const newRolesMap ={...currentRolesMap};
     newRolesMap[roleName]["role"]=!newRolesMap[roleName]["role"];
     if (roleName==="ALL SKILLS"){
-      Object.keys(newRolesMap).map((item) => {
-        newRolesMap[item]["role"] = newRolesMap[roleName]["role"];
-      });
+      Object.keys(newRolesMap).map((item) => 
+        newRolesMap[item]["role"] = newRolesMap[roleName]["role"]
+      );
     }
-    // currentRoles = Object.keys(newRolesMap).filter((item)=>newRolesMap[item]["role"]).map(item=>newRolesMap[item]["tagName"]);
    
     setRolesMap(newRolesMap);
     
@@ -69,8 +78,9 @@ function App() {
 
   return (
     <>
-     <FilterElements roleNames ={currentRolesMap} onInputChange={handleFilterClick}></FilterElements>
-    <div >
+     <FilterElements key={"filterElements"} roleNames ={currentRolesMap} onInputChange={handleFilterClick}></FilterElements>
+  <h1>Привет {(keyPairs.username)&&(keyPairs.username.length>0)&&", "+ keyPairs.username+"!"}</h1>
+    <div key={"groupList"}>
       <GroupList obj ={currentSkillValue} roles ={currentRoles} onPointChange ={handlePoints} onLearnChange={handleLearn}/>     
     </div>
     </>

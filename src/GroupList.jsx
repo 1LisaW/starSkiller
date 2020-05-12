@@ -18,16 +18,16 @@ function GroupList ({obj,roles,onPointChange,onLearnChange}) {
   }
 
     return (
-      <ul className="skillGroup">
+      <ul key={"skillGroup"} className="skillGroup">
           {Object.keys(obj).map(cur => {
             const skillGroupFilterRoles = roles.filter(role => obj[cur]["roles"].includes(role));
             
             return (
-              <>
+              <React.Fragment key={cur}>
               { skillGroupFilterRoles.length>0 &&
               (<li key={cur} style={getStyle(skillGroupFilterRoles)}>
                 <h2>{cur}</h2>
-                <ul className="skillElement">
+                <ul key={cur} className="skillElement">
                   {Object.keys(obj[cur]["skills"]).map( key=>{
                     return (<li key={key}><span>{key}</span>
                               <ProgressBar value={obj[cur]["skills"][key]} skillName ={key} 
@@ -39,7 +39,7 @@ function GroupList ({obj,roles,onPointChange,onLearnChange}) {
                 </ul>
               </li>)
               }
-              </>
+              </React.Fragment>
             );
           })}
       </ul>

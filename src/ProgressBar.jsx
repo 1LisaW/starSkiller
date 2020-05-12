@@ -19,17 +19,17 @@ const getHash= (str) =>{
 function ProgressBar ({value, skillName, onProgressClick,onInputChange}){
     let idSkill = getId(skillName);
     return(
-        <div className = "progressBar">
+        <div className = "progressBar" key={idSkill}>
             <progress max="2" onClick = {onProgressClick} value = {value[0]}>
             </progress>
             <span>{emojiList[value[0]]}</span>
             {value[0]!==2 && (
-                <>
+                <React.Fragment key={idSkill}>
                     <input type="checkbox" id={idSkill} checked={value[1]===1} value="1" onChange = {onInputChange}/>
                     <label htmlFor={idSkill}>
                         Хочу изучить
                     </label>
-                </>
+                </React.Fragment>
             )}
             
         </div>
