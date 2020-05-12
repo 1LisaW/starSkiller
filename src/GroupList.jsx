@@ -1,14 +1,31 @@
 import React from 'react';
 import './App.css';
 import ProgressBar from './ProgressBar.jsx';
+import roleList from './roles.json';
 
-function GroupList ({obj, onPointChange,onLearnChange}) {
+function GroupList ({obj,roles,onPointChange,onLearnChange}) {
+
+  function getStyle (currentFilteredRoles){
+    let result ={};
+    const array = Object.keys(roleList).filter(item => 
+      (currentFilteredRoles.includes(roleList[item]["tagName"])&&(roleList[item]["color"]))
+    ).map((skill) => roleList[skill]["color"]);
+    if (array.length>1){
+       result ={"background":"linear-gradient(120deg,"+array.join(",")+")"}
+    } else
+       result ={"backgroundColor":array[0]};
+     return result
+  }
 
     return (
       <ul className="skillGroup">
           {Object.keys(obj).map(cur => {
+            const skillGroupFilterRoles = roles.filter(role => obj[cur]["roles"].includes(role));
+            
             return (
-              <li key={cur}>
+              <>
+              { skillGroupFilterRoles.length>0 &&
+              (<li key={cur} style={getStyle(skillGroupFilterRoles)}>
                 <h2>{cur}</h2>
                 <ul className="skillElement">
                   {Object.keys(obj[cur]["skills"]).map( key=>{
@@ -20,7 +37,9 @@ function GroupList ({obj, onPointChange,onLearnChange}) {
                            </li>)
                   })}
                 </ul>
-              </li>
+              </li>)
+              }
+              </>
             );
           })}
       </ul>

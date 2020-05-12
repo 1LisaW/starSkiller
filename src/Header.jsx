@@ -1,20 +1,24 @@
 import React from 'react';
 import './Header.css';
-function FilterElement(roleName, onClick){
-    return(
-        <div className="filterElem">
-            <a onClick={onClick}>{roleName}</a>
-        </div>
-    )
-}
 
-function Header (){
+
+function FilterElements({roleNames,onInputChange}){
     return(
         <header>
-            <menu></menu>
-
+        <div className="filterElem">
+            {Object.keys(roleNames).map((currRole)=>{
+                return(
+                    
+                    <label htmlFor={currRole} className={(roleNames[currRole]["role"] ? roleNames[currRole]["tagName"]: "switchedOff")}>
+                        <input type="checkbox" id={currRole} onChange = {()=>onInputChange(currRole)}  checked={roleNames[currRole]["role"]}></input>
+                        {currRole}
+                    </label>
+                )})
+            }
+        </div>
         </header>
     )
 }
 
-export default Header;
+
+export default FilterElements;

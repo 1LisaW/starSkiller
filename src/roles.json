@@ -1,0 +1,9 @@
+{
+    "Undefined":{"tagName":"no_tag","color":"pink"},
+    "Тестирование": {"tagName":"testing","color":"#ffca02"},
+    "Бэкенд": {"tagName":"backend","color":"#a0fdac"},
+    "Аналитика": {"tagName":"analyst", "color":"#ffff81"},
+    "Фронтенд": {"tagName":"frontend","color":"#52d8fd"},
+    "софт-скиллы":{"tagName":"soft_skills","color":"#ffffcc"},
+    "ALL SKILLS":{"tagName":"all_skills","color":"rgb(179, 149, 204)"}
+}

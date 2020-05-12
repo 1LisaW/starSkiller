@@ -1,6 +1,27 @@
+@import url(http://allfont.ru/allfont.css?fonts=b52);
+
+:root{
+    --color-backend:#a0fdac;
+    --color-frontend:#52d8fd;
+    --color-testing:#ffca02;
+    --color-soft-skills:#ffffcc;
+    --color-analyst:#ffff81;
+    --color-all-skills:rgb(179, 149, 204);
+    --color-default: pink;
+}
 header{
     background-image: url('./img/header-wood.jpg');
     height: 100px;
+
+}
+div.filterElem{
+    display: flex;
+    flex-direction: row-reverse;
+    
+}
+
+header, .filterElem label{
+
      -moz-box-shadow:5px 5px 7px rgba(33,33,33,1); 
       -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7); 
       box-shadow: 5px 5px 7px rgba(33,33,33,.7); 
@@ -8,4 +29,67 @@ header{
       -o-transition:-o-transform .15s linear; 
       -webkit-transition:-webkit-transform .15s linear; 
       margin-bottom: 2em;
+
+}
+div.filterElem label{
+    margin: 10px 10px;
+    width: 150px;
+    height: 150px;
+    background-image:url("./img/all.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color:pink;
+    transform: rotate(5deg);
+    text-align: center;
+  
+}
+
+.filterElem label{
+    /* outline: none; */
+    /* text-decoration: none; */
+    display: block;
+    color:black;
+    height: 100%;
+    font-family: 'B52', arial;
+    /* align-self: center; */
+}
+.filterElem input{
+    cursor: pointer;
+}
+.filterElem label.backend{
+    background-image:url("./img/back.png");
+    background-color: var(--color-backend);
+    transform: rotate(-1deg);
+}
+.filterElem label.frontend{
+    background-image:url("./img/front.png");
+    background-color:var(--color-frontend);
+}
+.filterElem label.testing{
+    background-image:url("./img/test.png");
+    background-color: var(--color-testing);
+    transform: rotate(-3deg);
+}
+.filterElem label.soft_skills{
+    background-image:url("./img/soft.png");
+    background-color: var(--color-soft-skills);
+    transform: rotate(-5deg);
+}
+.filterElem label.analyst{
+    background-image:url("./img/analis.png");
+    background-color: var(--color-analyst);
+}
+.filterElem label.no_tag{
+    background-image:url("./img/chaos.png");
+    background-color: var(--color-default);
+}
+.filterElem label.all_skills{
+    background-color: var(--color-all-skills);
+}
+
+div.filterElem label.switchedOff{
+    background-image:none;
+    background-color:grey;
+    font-size: 1.5em;
+    overflow-wrap: anywhere;
 }

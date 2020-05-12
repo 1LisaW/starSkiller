@@ -23,7 +23,7 @@
       background-size: cover;
     background-blend-mode: difference;
     background-position:
-        calc(50% — 1px) calc(50% — 1px),
+        calc(50% - 1px) calc(50% - 1px),
         calc(50% + 1px) calc(50% + 1px);
     filter: brightness(3) invert(1) grayscale(1);
       /* background-size: 35px 20px, 100% 100%, 100% 100%; */
