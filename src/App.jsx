@@ -11,12 +11,13 @@ function App() {
 
   const url = new URL(window.location);
   const params = url.search.substring(1).split("&"),
-    keyPairs = {};
+    keyPairs = {"tags":""};
     for (var i = params.length - 1; i >= 0; i--) {
       keyPairs[params[i].split('=')[0]]=decodeURIComponent([params[i].split('=')[1]].join("")).trim();
       
   };
-  const incomingFilters = keyPairs["tags"].split(",");
+  const incomingFilters =  keyPairs["tags"].split(",");
+
 
   // declaration - role state repository {rolesMap}
   const rolesMap =JSON.parse(JSON.stringify(roles));
@@ -35,7 +36,7 @@ function App() {
 
    // declaration - array of selected tags [currentRoles]
   const currentRoles = Object.keys(currentRolesMap).filter((item)=>currentRolesMap[item]["role"]).map(item=>currentRolesMap[item]["tagName"]);
-  // callback for changing filters
+   // callback for changing filters
   function handleFilterClick(roleName){
     const newRolesMap ={...currentRolesMap};
     newRolesMap[roleName]["role"]=!newRolesMap[roleName]["role"];
@@ -50,18 +51,25 @@ function App() {
   }
 
   //declaration - skill state repository {skillValue}
-  const skillValue =JSON.parse(JSON.stringify(competence));
+  let skillValue;
+  if (localStorage.getItem(["starSkiller"+keyPairs.username])){
+     skillValue = JSON.parse(localStorage.getItem(["starSkiller"+keyPairs.username]));
+  }else
+  {
+     skillValue =JSON.parse(JSON.stringify(competence));
     // writing default value  {skillValue}
-  for (let key in skillValue){
-    if (skillValue[key]["roles"].length===0){
-      skillValue[key]["roles"] ="no_tag";
-    }
-    const array = skillValue[key]["skills"];
-    skillValue[key]["skills"]={};
-    array.map((item)=> skillValue[key]["skills"][item]=[0,0]);
-  };
-  const [currentSkillValue, setSkillValue] = useState(skillValue);
+    for (let key in skillValue){
+      if (skillValue[key]["roles"].length===0){
+        skillValue[key]["roles"] ="no_tag";
+      }
+      const array = skillValue[key]["skills"];
+      skillValue[key]["skills"]={};
+      array.map((item)=> skillValue[key]["skills"][item]=[0,0]);
+    };
+  }
 
+  const [currentSkillValue, setSkillValue] = useState(skillValue);
+  (keyPairs.username)&& localStorage.setItem("starSkiller"+keyPairs.username,JSON.stringify(currentSkillValue));
   
   function handlePoints(groupName,skillName){
     const obj = {...currentSkillValue};
